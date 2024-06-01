@@ -1,4 +1,7 @@
-# Top Amazon Categories & Consumer Behavior
+# Top Amazon Categories & Consumer Behavior Analysis
+by **Natesha Mortimer**
+
+
 
 ## Table of Contents
 - [Project Overview](#project-overview)
@@ -9,12 +12,13 @@
 - [Mathematical & Statistical Concepts](#mathematical--statistical-concepts)
 - [Data Cleaning / Preparation](#data-cleaning--preparation)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
-- [Secondary Exploratory Data Analysis](#secondary-exploratory-data-analysis)
+- [Secondary Data Cleaning / Preparation](#secondary-data-cleaning--preparation)
 - [Data Analysis & Visualizations](#data-analysis--visualizations)
-- [Results](#results)
+- [Overall Results](#overall-results)
 - [Recommendations](#recommendations)
 - [Limitations](#limitations)
 - [Future](#future)
+
 
 
 ## Project Overview
@@ -29,6 +33,8 @@ An Amazon retailer would like know the most popular categories of products being
 **Problem:** Online Amazon retailers are offering 10,000+ unique products across several categories, but have no insight into the rank of product categories or if consumer interaction patterns exist across the products from top categories. 
 
 **Goal:** Find the top 10 categories across the 10,000+ unique product offerings and investigate the relationship between products from top categories and the type of consumer interactions they receive. 
+
+
 
 ## Data Sources
 The product details dataset provides product details for each unique product offering on Amazon.com. The key detail we'll be focusing on are the Categories of for each product.
@@ -70,7 +76,7 @@ I hypothesize that since there are so many different type of product categories,
 
 
 ## Data Cleaning / Preparation
-In the initial data preparatiion phase, the following tasks were performed:
+In the initial data preparation phase, the following tasks were performed:
 1. Data loading and inspection
 2. Removal of irrelevant columns in product details dataset
 3. Handling missing values
@@ -89,7 +95,7 @@ EDA involved exploring the product data to answer key questions, such as:
 
 
 ## Secondary Data Cleaning / Preparation
-In the initial data preparatiion phase, the following tasks were performed:
+In the secondary data preparation phase, the following tasks were performed:
 1. Data loading and inspection
 2. Removal of irrelevant columns in product details dataset
 3. Handling missing values
@@ -163,7 +169,7 @@ From the above visual we can see that there is a clear difference bewteern user 
 
 If anything, PCA can be starting point to further investigate "why" there is a large instance of products being liked instead of viewed or purchased.
 
-## Results 
+## Overall Results 
 Overall, 5.919% of products are not associated with the top 10 categories. This doesn't support the first part of hypothesis that categories are "spread" somewhat evenly accross product offerings.
 
 Secondly, I thought that interaction types would be evenly dispersed across categories of products that consumers interacted with. PCA disproved this part of my hypothesis as well. It found a "hidden" insight that "liked" products variance greatly accross products within top categories.
@@ -178,7 +184,7 @@ Based on the the analysis, the following actions are recommended for Amazon reta
 Having richer e-commerce sales data would have provided deeper insights. Data that would have made analysis more insghtful are: customer location, product discounts, and customer browsing time.
 
 ## Future:
-Building on top category and PCA, one can complete a multiple regression analysis to isolate the top factors that influence a person to like a product. Then incorporate those top factors into products to attempt to limit the variation of products being liked. Shift the variation bounds up for products that are being viewed and purchased. Finally,one can focus on finding waysto conver likes and view to purchases. 
+Building on top category and PCA, one can complete a multiple regression analysis to isolate the top factors that influence a person to like a product. Then incorporate those top factors into products to attempt to limit the variation of products being liked. Shift the variation bounds up for products that are being viewed and purchased. Finally,one can focus on finding ways to conver likes and view to purchases. 
 
-
+🙂
  
