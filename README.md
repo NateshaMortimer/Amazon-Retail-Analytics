@@ -36,8 +36,6 @@ We'll be using both datasets do analysis on Category frequency and products that
 I hypothesize that since there are so many different type of product categories, there will not be"1" clear top product category across all category types. Also, I think that of the top few/most fequent categories will have the most product interactions( views, likes, purchases) across the board.
 
 ## Tools
-- Excel - Loading CSV data
-- SQL - Data Analysis
 - Python - Data Analysis
     - String Manipulation
     - String Formating
@@ -45,13 +43,12 @@ I hypothesize that since there are so many different type of product categories,
     - Lambda Functions
     - List Comprehension
     - Nested Data
-    - Counter Dictionary
+    - Dictionares
     - Numpy
     - Pandas
     - Seaborn
     - Matplotlib
-    - 
-- PowerBI - Report Visualization
+
 
 ## Mathematical & Statistical Concepts
 - Linear Algebra
@@ -65,17 +62,26 @@ In the initial data preparatiion phase, the following tasks were performed:
 1. Data loading and inspection
 2. Removal of irrelevant columns in product details dataset
 3. Handling missing values
-   - `column_1` has 123 missing values REEEEEMMMOOOVEEE THHHHHIIIIIIIIIIIIIIIIIISSSS remove this 
    - Verify no products with missing Product IDs
 4. Data cleaning and formatting
    - Find products with missing Category information and fill in "Other" as Category to not remove valuable information from analysis
   
-   - 
+     
 ## Exploratory Data Analysis
-EDA involved exploring the sales data to answer key questions, such as:
-- What is the overall sales trend
-- Which products are top sellers?
-- What are the peak sales periods?
+EDA involved exploring the product data to answer key questions, such as:
+- What are the top product cateogies for product offerings?
+- What products are in the top categories?
+- How many product offerings belong to the top 10 product categories?
+- What percentage of the total product offerings are in the top 10 product categories?
+
+## Secondary Data Cleaning / Preparation
+In the initial data preparatiion phase, the following tasks were performed:
+1. Data loading and inspection
+2. Removal of irrelevant columns in product details dataset
+3. Handling missing values
+   - Verify no products with missing Product IDs
+4. Data cleaning and formatting
+   - Find products with missing Category information and fill in "Other" as Category to not remove valuable information from analysis
 
 ## Data Analysis & Visualizations
 Include some interesting code/features worked with
