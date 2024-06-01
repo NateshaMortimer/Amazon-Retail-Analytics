@@ -4,13 +4,17 @@
 - [Project Overview](#project-overview)
 - [Problem Statement](#problem-statement)
 - [Data Sources](#data-sources)
+- [Hypothesis](#hypothesis)
 - [Tools](#tools)
+- [Mathematical & Statistical Concepts](#mathematical--statistical-concepts)
 - [Data Cleaning / Preparation](#data-cleaning--preparation)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
+- [Secondary Exploratory Data Analysis](#secondary-exploratory-data-analysis)
 - [Data Analysis & Visualizations](#data-analysis--visualizations)
-- [Results / Conclusion](#results--conclusion)
+- [Results](#results)
 - [Recommendations](#recommendations)
-- [References](#references)
+- [Limitations](#limitations)
+- [Future](#future)
 
 
 ## Project Overview
@@ -113,7 +117,7 @@ Here's a glimpse of the initial analysis of products in top categories and consu
 <img width="328" alt="top_category_interactions_pivot_table" src="https://github.com/NateshaMortimer/Amazon-Retail-Analytics/assets/171082935/428b190c-ebcb-4c27-b395-21a556ed0b43">
 
 ### Matrix Transposition, Singular Value Decomposition, Principal Component Analysis....Oh My !!
-The analysis thus far does an excellent job at showing us the relationship between a specific interaction and whether or not a product was in a top category. Due to the high-dimensionality of the data we cannot begin to understand relationship "across" interaction types. My solution is to use PCA to "press" 8 dimensions in 2 dimensions (2D) to uncover any hidden pattern across interaction types. 
+The analysis thus far does an excellent job at showing us the relationship between a specific interaction and whether or not a product was in a top category. Due to the high-dimensionality of the data we cannot begin to understand relationship "across" interaction types. My solution is to use PCA to "press" 8 dimensions into 2 dimensions (2D) to uncover any hidden pattern across interaction types. 
 
 The below steps were used to get prepare the data for PCA.
 1. Retrieve the interaction values from the Top Category Dataframe as an Numpy array, transpose the elements, and mean-center (CRUCIAL for PCA).
@@ -157,9 +161,9 @@ fig.suptitle("PCA: Interactions / Top Category")
 ### PCA Results Explanation
 From the above visual we can see that there is a clear difference bewteern user interactions. Principal Component Analysis "highlights" the fact that there is a substantial difference/variation in "Liked" products across products in top categories. Note that, PCA does NOT show/tell us that "Liked" products are more or less likely to be in a top categories. PCA shows that of products that have consumer interactions, there is a large variance of products being "liked" across the top categories of products. The variance for "Liked" products is (-146.7396456416586, -0.178752667128817).
 
-If anything, this PCA can be starting point to further investigate "why" there is a large instance of products being liked.
+If anything, PCA can be starting point to further investigate "why" there is a large instance of products being liked instead of viewed or purchased.
 
-## Results / Conclusion
+## Results 
 Overall, 5.919% of products are not associated with the top 10 categories. This doesn't support the first part of hypothesis that categories are "spread" somewhat evenly accross product offerings.
 
 Secondly, I thought that interaction types would be evenly dispersed across categories of products that consumers interacted with. PCA disproved this part of my hypothesis as well. It found a "hidden" insight that "liked" products variance greatly accross products within top categories.
