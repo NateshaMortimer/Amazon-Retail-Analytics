@@ -94,7 +94,11 @@ In the initial data preparatiion phase, the following tasks were performed:
    - Find products with missing Category information and fill in "Other" as Category to not remove valuable information from analysis
 
 ## Data Analysis & Visualizations
-Here's a glimpse of the initial analysis of products in top categories and consumers interactions. I arrived here by completing the following steps.
+### Initial Analysis of Top Categories and Consumer Interactions
+Here's a glimpse of the initial analysis of products in top categories and consumers interactions. I arrived here by completing the following steps. Then used the Seaborn library to visualize the pivoted dataframe.
+
+<img width="1014" alt="Interactions_per_top_category_plots" src="https://github.com/NateshaMortimer/Amazon-Retail-Analytics/assets/171082935/11997f7f-9391-4ded-a4f3-d16a726ef47c">
+
 
 1. Merge the previously created Top Category Dataframe and the cleaned E-Commerce Dataframe and adding a Value column to count the presence of each interaction.
    
@@ -108,39 +112,69 @@ Here's a glimpse of the initial analysis of products in top categories and consu
    
 <img width="328" alt="top_category_interactions_pivot_table" src="https://github.com/NateshaMortimer/Amazon-Retail-Analytics/assets/171082935/428b190c-ebcb-4c27-b395-21a556ed0b43">
 
+### Matrix Transposition, Singular Value Decomposition, Principal Component Analysis....Oh My !!
+The analysis thus far does an excellent job at showing us the relationship between a specific interaction and whether or not a product was in a top category. Due to the high-dimensionality of the data we cannot begin to understand relationship "across" interaction types. My solution is to use PCA to "press" 8 dimensions in 2 dimensions (2D) to uncover any hidden pattern across interaction types. 
 
-```sql
-  SELECT * FROM table1
-  WHERE cond = 2;
+The below steps were used to get prepare the data for PCA.
+1. Retrieve the interaction values from the Top Category Dataframe as an Numpy array, transpose the elements, and mean-center (CRUCIAL for PCA).
+``` python
+new_x = x_values - np.mean(x_values, axis = 0)
+```
+   
+3. Use Singualar Value Decomposition to "break apart" our matrix into various matrices that when multiplies represents out data.
+   
+``` python
+U, Sigma, VT = np.linalg.svd(new_x, full_matrices=False) 
+print("U:", U.shape)
+print("Sigma:", Sigma.shape)
+print("VT:", VT.shape)
 ```
 
+5. Use one of the matrices complete PCA by making a 2D projection 
+
+
+```python
+# Project into 2-D
+# Note that we "could" choose to project into a higher dimension other than 2, 
+# We choose to make a 2D projection and not optimize the dimension, so that we could make a 2D visual
+Y_k = new_x.dot(VT[0:2, :].T)
+
+# Print
+for x, y, label in zip(Y_k[:, 0], Y_k[:, 1], interactions):
+    print(f'* {label}: ({x}, {y})')
+
+# Plot
+fig = plt.figure(figsize=(3, 3))
+plt.scatter(Y_k[:, 0], Y_k[:, 1])
+for x, y, label in zip(Y_k[:, 0], Y_k[:, 1], interactions):
+    plt.annotate(label, xy=(x, y))
+ax = plt.gca()
+ax.axis('square');
+fig.suptitle("PCA: Interactions / Top Category")
+```
+<img width="462" alt="pca_2d_visual" src="https://github.com/NateshaMortimer/Amazon-Retail-Analytics/assets/171082935/bf3b6643-847a-498c-a920-cd882ab93099">
+
+### PCA Results Explanation
+From the above visual we can see that there is a clear difference bewteern user interactions. Principal Component Analysis "highlights" the fact that there is a substantial difference/variation in "Liked" products across products in top categories. Note that, PCA does NOT show/tell us that "Liked" products are more or less likely to be in a top categories. PCA shows that of products that have consumer interactions, there is a large variance of products being "liked" across the top categories of products. The variance for "Liked" products is (-146.7396456416586, -0.178752667128817).
+
+If anything, this PCA can be starting point to further investigate "why" there is a large instance of products being liked.
+
 ## Results / Conclusion
-cdbshjbsvfdbj 
+Overall, 5.919% of products are not associated with the top 10 categories. This doesn't support the first part of hypothesis that categories are "spread" somewhat evenly accross product offerings.
+
+Secondly, I thought that interaction types would be evenly dispersed across categories of products that consumers interacted with. PCA disproved this part of my hypothesis as well. It found a "hidden" insight that "liked" products variance greatly accross products within top categories.
 
 ## Recommendations
-Based on the the analysis, the following actions are recommended
-- Invest in indnsjkd
-- Listen todfdf
-- Implement survey vfdvf
+Based on the the analysis, the following actions are recommended for Amazon retailers
+- Choose to sell niche products that are not part of the top 10 categories
+- Try to increase conversion rate for consumer interations of product offering from "likes" to purchases 
+- Attempt to gain market share in specific top product categories
 
-## Limitations / Challenges
-I had to remove all zero values from budget and revenue because they would have negatively affected....There are a still few outliers - remaining outliers were manged by fndjvnfdnvjk extropalation
+## Limitations
+Having richer e-commerce sales data would have provided deeper insights. Data that would have made analysis more insghtful are: customer location, product discounts, and customer browsing time.
+
+## Future:
+Building on top category and PCA, one can complete a multiple regression analysis to isolate the top factors that influence a person to like a product. Then incorporate those top factors into products to attempt to limit the variation of products being liked. Shift the variation bounds up for products that are being viewed and purchased. Finally,one can focus on finding waysto conver likes and view to purchases. 
 
 
-## References
-1. Data Book for Experts by Natesha
-2. [Stack Overflow](https://stack.com)
-
-   😄
-
-|Heading1 | Heading2|
-|-------- | --------|
-|Content | Content2|
-| Python | SQL |
-
-`column_1`
-
-**bold**
-
-*italic*
  
